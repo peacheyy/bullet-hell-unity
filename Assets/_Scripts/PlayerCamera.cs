@@ -10,8 +10,13 @@ public class PlayerCamera : MonoBehaviour
 
     private Vector3 velocity = Vector3.zero;
     
-    void FixedUpdate() {
-        Vector3 movePosition = target.position + offset;
-        transform.position = Vector3.SmoothDamp(transform.position, movePosition, ref velocity, damping);
-    }
+    private void LateUpdate() {
+        Vector3 desiredPosition = new Vector3(
+            target.position.x + offset.x,
+            target.position.y + offset.y,
+            transform.position.z
+        );
+        
+        transform.position = Vector3.Lerp(transform.position, desiredPosition, Time.deltaTime / damping);
+    }   
 }
