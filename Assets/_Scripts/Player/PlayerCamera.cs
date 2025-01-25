@@ -1,12 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerCamera : MonoBehaviour
 {
-    public Transform target;
-    public Vector3 offset;
-    public float damping;
+    [SerializeField] Transform target;
+    [SerializeField] Vector3 offset;
+    [SerializeField] float damping;
 
     private Vector3 velocity = Vector3.zero;
     
