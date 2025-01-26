@@ -11,7 +11,6 @@ public class SpawnBullet : MonoBehaviour {
 
     public Transform firePoint;
 
-
     [Header("Spawner Attribute(s)")]
     [SerializeField] float firingRate = 1f;
 
@@ -24,7 +23,6 @@ public class SpawnBullet : MonoBehaviour {
 
     void Update() {
         timer += Time.deltaTime;
-        transform.eulerAngles = new Vector3(0f, 0f, transform.eulerAngles.z + 1f);
         if(timer >= firingRate) {
             Fire();
             timer = 0;
