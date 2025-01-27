@@ -1,18 +1,15 @@
 using UnityEngine;
 
-public class SpawnBullet : MonoBehaviour
+public class SpawnBullet2 : MonoBehaviour
 {
 
     [Header("Bullet Attributes")]
     [SerializeField] GameObject bullet;
+    [SerializeField] Transform firePoint;
     [SerializeField] float bulletLife = 1f;
     [SerializeField] float speed = 1f;
     [SerializeField] float damageAmount = 5f;
-    [SerializeField] Transform firePoint;
-
-    [Header("Spawner Attribute(s)")]
     [SerializeField] float firingRate = 1f;
-
     private GameObject spawnedBullet;
 
     //having a fire timer and a rotation timer makes the bullet spawner wait to fire until it's rotating
@@ -57,9 +54,9 @@ public class SpawnBullet : MonoBehaviour
             //Instantiates bullet and sets all required attributes
             spawnedBullet = Instantiate(bullet, firePoint.position, firePoint.rotation);
             Bullet bulletComponent = spawnedBullet.GetComponent<Bullet>();
-            bulletComponent.speed = speed;
-            bulletComponent.bulletLife = bulletLife;
-            bulletComponent.damageAmount = damageAmount;
+            bulletComponent.Speed = speed;
+            bulletComponent.BulletLife = bulletLife;
+            bulletComponent.DamageAmount = damageAmount;
         }
     }
 }

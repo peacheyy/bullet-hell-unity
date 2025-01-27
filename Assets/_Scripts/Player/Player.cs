@@ -3,20 +3,20 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [Header("Player Stats")]
-    [SerializeField] private float maxHealth = 100f;
+    [SerializeField] float maxHealth = 100f;
 
-    private float currentHealth;
+    private float _currentHealth;
 
     void Start()
     {
-        currentHealth = maxHealth;
+        _currentHealth = maxHealth;
     }
 
     public void TakeDamage(float damage)
     {
-        currentHealth -= damage;
+        _currentHealth -= damage;
 
-        if (currentHealth <= 0)
+        if (_currentHealth <= 0)
         {
             Die();
         }
@@ -29,6 +29,6 @@ public class Player : MonoBehaviour
 
     public float GetHealth()
     {
-        return currentHealth;
+        return _currentHealth;
     }
 }
