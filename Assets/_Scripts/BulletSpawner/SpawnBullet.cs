@@ -18,11 +18,14 @@ public class SpawnBullet : MonoBehaviour
 
     void Start()
     {
-        transform.position = firePoint.position;
+        //sets initial value of the spawned bullet's position using the firepoint
+        transform.position = firePoint.position; 
     }
 
     void Update()
     {
+        //handles fire rate by comparing the firing rate variable with a timer
+        //uses Time.deltaTime to get seconds between each frame
         timer += Time.deltaTime;
         if (timer >= firingRate)
         {
@@ -35,7 +38,7 @@ public class SpawnBullet : MonoBehaviour
     {
         if (bullet)
         {
-            // Use firePoint's rotation instead of transform.rotation
+            //Instantiates bullet and sets all required attributes
             spawnedBullet = Instantiate(bullet, firePoint.position, firePoint.rotation);
             Bullet bulletComponent = spawnedBullet.GetComponent<Bullet>();
             bulletComponent.speed = speed;
