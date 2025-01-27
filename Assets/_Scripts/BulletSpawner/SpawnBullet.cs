@@ -7,30 +7,46 @@ public class SpawnBullet : MonoBehaviour
     [SerializeField] GameObject bullet;
     [SerializeField] float bulletLife = 1f;
     [SerializeField] float speed = 1f;
-
+    [SerializeField] float damageAmount = 5f;
     [SerializeField] Transform firePoint;
 
     [Header("Spawner Attribute(s)")]
     [SerializeField] float firingRate = 1f;
 
     private GameObject spawnedBullet;
-    private float timer = 0f;
+
+    //having a fire timer and a rotation timer makes the bullet spawner wait to fire until it's rotating
+    private float fireTimer = 0f;
+    private float rotationTimer = 0f;
+    private float maxRotationTime = 3f;
+    private float rotationDuration = 1f;
 
     void Start()
     {
         //sets initial value of the spawned bullet's position using the firepoint
-        transform.position = firePoint.position; 
+        transform.position = firePoint.position;
     }
 
     void Update()
     {
         //handles fire rate by comparing the firing rate variable with a timer
         //uses Time.deltaTime to get seconds between each frame
-        timer += Time.deltaTime;
-        if (timer >= firingRate)
+
+        rotationTimer += Time.deltaTime;
+
+        if (rotationTimer >= maxRotationTime && rotationTimer <= maxRotationTime + rotationDuration)
         {
-            Fire();
-            timer = 0;
+            fireTimer += Time.deltaTime;
+            if (fireTimer >= firingRate)
+            {
+                Fire();
+                fireTimer = 0f;
+            }
+        }
+
+        //resets the rotation timer
+        if (rotationTimer >= maxRotationTime + rotationDuration) {
+            rotationTimer = 0f;
         }
     }
 
@@ -43,6 +59,7 @@ public class SpawnBullet : MonoBehaviour
             Bullet bulletComponent = spawnedBullet.GetComponent<Bullet>();
             bulletComponent.speed = speed;
             bulletComponent.bulletLife = bulletLife;
+            bulletComponent.damageAmount = damageAmount;
         }
     }
 }

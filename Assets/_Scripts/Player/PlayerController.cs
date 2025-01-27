@@ -2,26 +2,29 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] float moveSpeed = 2f;
     [SerializeField] Rigidbody2D rb;
     [SerializeField] Weapon weapon;
+    [SerializeField] float moveSpeed = 2f;
 
     Vector2 moveDirection;
     Vector2 mousePosition;
 
-    public void Update() {
+    void Update()
+    {
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveY = Input.GetAxisRaw("Vertical");
 
         moveDirection = new Vector2(moveX, moveY).normalized;
         mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        if(Input.GetMouseButtonDown(0)) {
+        if (Input.GetMouseButtonDown(0))
+        {
             weapon.Fire();
         }
     }
 
-    private void FixedUpdate() {
+    void FixedUpdate()
+    {
         rb.velocity = new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
 
         Vector2 aimDirection = mousePosition - rb.position;

@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 150543208}
   - component: {fileID: 150543209}
   - component: {fileID: 150543210}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BulletSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -203,7 +203,7 @@ Transform:
   m_GameObject: {fileID: 150543203}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.08639127, y: 0.35754567, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -308,7 +308,7 @@ GameObject:
   m_Component:
   - component: {fileID: 324145688}
   - component: {fileID: 324145689}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Barrel1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -345,6 +345,7 @@ MonoBehaviour:
   bullet: {fileID: 5806378099674441151, guid: e9298de43d045554aa680f1d047fb477, type: 3}
   bulletLife: 5
   speed: 5
+  damageAmount: 5
   firePoint: {fileID: 324145688}
   firingRate: 0.1
 --- !u!1 &352230392
@@ -2635,7 +2636,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1340595720}
   - component: {fileID: 1340595721}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Barrel2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2672,6 +2673,7 @@ MonoBehaviour:
   bullet: {fileID: 5806378099674441151, guid: e9298de43d045554aa680f1d047fb477, type: 3}
   bulletLife: 5
   speed: 5
+  damageAmount: 5
   firePoint: {fileID: 1340595720}
   firingRate: 0.1
 --- !u!1 &1798611239
@@ -2684,7 +2686,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1798611240}
   - component: {fileID: 1798611241}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Barrel3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2721,6 +2723,7 @@ MonoBehaviour:
   bullet: {fileID: 5806378099674441151, guid: e9298de43d045554aa680f1d047fb477, type: 3}
   bulletLife: 5
   speed: 5
+  damageAmount: 5
   firePoint: {fileID: 1798611240}
   firingRate: 0.1
 --- !u!1 &1799730910
@@ -2733,7 +2736,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1799730911}
   - component: {fileID: 1799730912}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Barrel4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2770,6 +2773,7 @@ MonoBehaviour:
   bullet: {fileID: 5806378099674441151, guid: e9298de43d045554aa680f1d047fb477, type: 3}
   bulletLife: 5
   speed: 5
+  damageAmount: 5
   firePoint: {fileID: 1799730911}
   firingRate: 0.1
 --- !u!1 &1900538143
@@ -2782,6 +2786,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1900538148}
   - component: {fileID: 1900538147}
+  - component: {fileID: 1900538150}
   - component: {fileID: 1900538144}
   - component: {fileID: 1900538145}
   - component: {fileID: 1900538149}
@@ -2804,9 +2809,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38d8523665a8f404c83a5fe01008606a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 2
   rb: {fileID: 1900538145}
   weapon: {fileID: 0}
+  moveSpeed: 2
 --- !u!50 &1900538145
 Rigidbody2D:
   serializedVersion: 4
@@ -2936,6 +2941,19 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &1900538150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1900538143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96d5c9b8378e194458f0e18bebb524b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 25
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

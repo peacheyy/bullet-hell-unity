@@ -4,6 +4,7 @@ public class Bullet : MonoBehaviour
 {
     public float bulletLife = 1f;
     public float speed = 1f;
+    public float damageAmount = 5f;
 
     private float timer = 0f;
     private Rigidbody2D rb;
@@ -15,9 +16,9 @@ public class Bullet : MonoBehaviour
         rb.velocity = transform.up * speed;
     }
 
-    //checks whether the fired bullet's life exceeds the timer
     void Update()
     {
+        //checks whether the fired bullet's life exceeds the timer
         if (timer > bulletLife)
         {
             Destroy(gameObject);
@@ -30,5 +31,18 @@ public class Bullet : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Destroy(gameObject);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            Player player = collision.gameObject.GetComponent<Player>();
+            if (player != null)
+            {
+                player.TakeDamage(damageAmount);  // You need to add a damageAmount field
+                Destroy(gameObject);  // Destroy bullet after hitting player
+            }
+        }
     }
 }
