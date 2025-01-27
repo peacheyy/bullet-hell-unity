@@ -12,6 +12,7 @@ public class PlayerCamera : MonoBehaviour
             transform.position.z
         );
         
+        //lerp used here makes movement of camera more smooth
         transform.position = Vector3.Lerp(transform.position, desiredPosition, Time.deltaTime / damping);
     }   
 }
