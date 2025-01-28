@@ -6,6 +6,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] float maxHealth = 25f;
 
     private float _currentHealth;
+    public static event System.Action<Enemy> OnEnemyDeath;
 
     void Start()
     {
@@ -25,6 +26,9 @@ public class Enemy : MonoBehaviour
     private void Die()
     {
         Debug.Log("Enemy died!");
+
+        OnEnemyDeath?.Invoke(this);
+
         Destroy(gameObject);
     }
 

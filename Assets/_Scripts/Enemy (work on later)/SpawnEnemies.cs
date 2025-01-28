@@ -5,29 +5,46 @@ using UnityEngine;
 
 public class SpawnEnemies : MonoBehaviour
 {
-    [SerializeField] EnemyController enemyPrefab;
+    [SerializeField] Enemy enemyPrefab;
 
     private Transform[] spawnPoints;
-    private List<EnemyController> activeEnemies = new List<EnemyController>();
+    private List<Enemy> activeEnemies = new List<Enemy>();
 
     void Start()
     {
         spawnPoints = GetComponentsInChildren<Transform>();
 
-        //GetComponentsInChildren includes the parent object so we need to skip it
+        // GetComponentsInChildren includes the parent object so we need to skip it
         spawnPoints = transform.Cast<Transform>().Skip(1).ToArray();
+
+        // Subscribe to the OnEnemyDeath event
+        Enemy.OnEnemyDeath += HandleEnemyDeath;
 
         StartCoroutine(SpawnEnemyRoutine());
     }
 
+    void OnDestroy()
+    {
+        // Unsubscribe from the event to prevent memory leaks
+        Enemy.OnEnemyDeath -= HandleEnemyDeath;
+    }
+
+    void HandleEnemyDeath(Enemy enemy)
+    {
+        // Remove the dead enemy from the activeEnemies list
+        activeEnemies.Remove(enemy);
+
+        // Spawn a new enemy
+        SpawnEnemy();
+    }
 
     void SpawnEnemy()
     {
         int randomIndex = Random.Range(0, spawnPoints.Length);
         Vector3 spawnPosition = spawnPoints[randomIndex].position;
 
-        //Stores the reference to the enemy so you can track and modify the instance
-        EnemyController newEnemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
+        // Stores the reference to the enemy so you can track and modify the instance
+        Enemy newEnemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
         activeEnemies.Add(newEnemy);
     }
 
