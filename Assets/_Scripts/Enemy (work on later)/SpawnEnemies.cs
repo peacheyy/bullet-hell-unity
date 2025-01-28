@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class SpawnEnemies : MonoBehaviour
 {
-    [SerializeField] EnemyController enemy;
+    [SerializeField] EnemyController enemyPrefab;
 
     private Transform[] spawnPoints;
     private List<EnemyController> activeEnemies = new List<EnemyController>();
@@ -27,7 +27,7 @@ public class SpawnEnemies : MonoBehaviour
         Vector3 spawnPosition = spawnPoints[randomIndex].position;
 
         //Stores the reference to the enemy so you can track and modify the instance
-        EnemyController newEnemy = Instantiate(enemy, spawnPosition, Quaternion.identity);
+        EnemyController newEnemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
         activeEnemies.Add(newEnemy);
     }
 

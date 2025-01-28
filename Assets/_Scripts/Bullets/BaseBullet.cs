@@ -2,10 +2,13 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    private float timer = 0f;
+    private Rigidbody2D rb;
+
     private float _bulletLife = 1f;
     private float _speed = 1f;
     private float _damageAmount = 5f;
-    
+
     //getters for bullet traits
     public float BulletLife
     {
@@ -25,19 +28,27 @@ public class Bullet : MonoBehaviour
         set { _damageAmount = value; }
     }
 
-    private float timer = 0f;
-    private Rigidbody2D rb;
-
-    void Start()
+    protected virtual void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        // Set velocity based on the bullet's up direction
+        InitMovement();
+    }
+
+    protected virtual void Update()
+    {
+        HandleLifetime();
+    }
+
+    // Set velocity based on the bullet's up direction
+    protected virtual void InitMovement()
+    {
         rb.velocity = transform.up * Speed;
     }
 
-    void Update()
+    //checks whether the fired bullet's life exceeds the timer
+    protected virtual void HandleLifetime()
     {
-        //checks whether the fired bullet's life exceeds the timer
+
         if (timer > BulletLife)
         {
             Destroy(gameObject);
@@ -46,12 +57,12 @@ public class Bullet : MonoBehaviour
         timer += Time.deltaTime;
     }
 
-    //collision detection when bullet encounters a rigidbody
+    //collision detection when bullet encounters a rigidbody MOVE TO CHILD
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Destroy(gameObject);
     }
-
+    //MOVE TO CHILD
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
@@ -59,7 +70,7 @@ public class Bullet : MonoBehaviour
             Player player = collision.gameObject.GetComponent<Player>();
             if (player != null)
             {
-                player.TakeDamage(DamageAmount);  // You need to add a damageAmount field
+                player.TakeDamage(DamageAmount);
                 Destroy(gameObject);  // Destroy bullet after hitting player
             }
         }
