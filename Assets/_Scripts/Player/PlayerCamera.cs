@@ -1,9 +1,10 @@
 using UnityEngine;
 
+//this was AI generated, not sure if it's the best choice for follow player camera
 public class PlayerCamera : MonoBehaviour
 {
     [SerializeField] Transform target;
-    [SerializeField] float pixelSize = 1f / 32f; // Adjust based on your PPU
+    [SerializeField] float pixelSize = 1f / 32f;
 
     void LateUpdate()
     {

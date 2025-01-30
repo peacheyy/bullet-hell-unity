@@ -48,14 +48,17 @@ public class SpawnEnemies : MonoBehaviour
         activeEnemies.Add(newEnemy);
     }
 
+    //handles enemy spawn using IEnumerator
     IEnumerator SpawnEnemyRoutine()
     {
+        //while until false which is never in this implimentation
         while (true)
         {
             if (activeEnemies.Count < 10)
             {
                 SpawnEnemy();
             }
+            //IEnumerator functionality that lets the loop wait 1s
             yield return new WaitForSeconds(1f);
         }
     }
