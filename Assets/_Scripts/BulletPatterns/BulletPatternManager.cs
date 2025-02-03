@@ -3,46 +3,42 @@ using UnityEngine;
 
 public class BulletPatternManager : MonoBehaviour
 {
+    [SerializeField] PatternConfig _config;
     [SerializeField] GameObject _bulletPrefab;
     [SerializeField] Transform[] _firePoints;
-    private Dictionary<string, IBulletPattern> _patterns;
+
+    private Dictionary<PatternType, IBulletPattern> _patterns;
     private IBulletPattern _currentPattern;
-
-    // getters and setters for current patter and bullet prefab
-    public IBulletPattern CurrentPattern
-    {
-        get { return _currentPattern; }
-        private set { _currentPattern = value; }
-    }
-
-    public GameObject BulletPrefab
-    {
-        get { return _bulletPrefab; }
-        private set { _bulletPrefab = value; }
-    }
+    private int _currentIndex;
+    private float _timer;
 
     private void Start()
     {
-        // possible implimentation would be to randomly select a bullet pattern from the _patterns dictionary
-        _patterns = new Dictionary<string, IBulletPattern>
+        _patterns = new Dictionary<PatternType, IBulletPattern>
         {
-            { "spiral", new SpiralPattern() }
+            { PatternType.Spiral, new SpiralPattern() },
+            { PatternType.Circle, new CirclePattern() }
         };
-        _currentPattern = _patterns["spiral"];
+
+        _currentPattern = _patterns[_config.patternSequence[0]];
     }
 
     private void Update()
     {
-        // null propagation used which is basically an if statement checking if _currentPattern is null
+        _timer += Time.deltaTime;
+        if (_timer >= _config.switchInterval)
+        {
+            NextPattern();
+            _timer = 0f;
+        }
+
         _currentPattern?.Execute(transform, _firePoints, _bulletPrefab);
     }
 
-    public void SwitchPattern(string patternName)
+    private void NextPattern()
     {
-        if (_patterns.ContainsKey(patternName))
-        {
-            _currentPattern?.Reset();
-            _currentPattern = _patterns[patternName];
-        }
+        _currentIndex = (_currentIndex + 1) % _config.patternSequence.Length;
+        _currentPattern?.Reset();
+        _currentPattern = _patterns[_config.patternSequence[_currentIndex]];
     }
 }
