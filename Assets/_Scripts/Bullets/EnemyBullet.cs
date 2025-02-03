@@ -2,6 +2,14 @@ using UnityEngine;
 
 public class EnemyBullet : Bullet
 {
+    protected override void Start()
+    {
+        Speed = 2f;
+        BulletLife = 10f;
+        DamageAmount = 10f;
+        base.Start();
+    }
+
     //collision detection when bullet encounters a rigidbody
     private void OnCollisionEnter2D(Collision2D collision)
     {

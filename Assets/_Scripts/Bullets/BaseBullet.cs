@@ -57,22 +57,5 @@ public class Bullet : MonoBehaviour
         timer += Time.deltaTime;
     }
 
-    //collision detection when bullet encounters a rigidbody MOVE TO CHILD
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        Destroy(gameObject);
-    }
-    //MOVE TO CHILD
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            Player player = collision.gameObject.GetComponent<Player>();
-            if (player != null)
-            {
-                player.TakeDamage(DamageAmount);
-                Destroy(gameObject);  // Destroy bullet after hitting player
-            }
-        }
-    }
+    
 }
