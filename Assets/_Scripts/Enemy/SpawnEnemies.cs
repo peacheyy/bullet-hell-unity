@@ -6,59 +6,31 @@ using UnityEngine;
 public class SpawnEnemies : MonoBehaviour
 {
     [SerializeField] Enemy enemyPrefab;
+    [SerializeField] int enemyCount = 5;
 
     private Transform[] spawnPoints;
-    private List<Enemy> activeEnemies = new List<Enemy>();
 
     void Start()
     {
         spawnPoints = GetComponentsInChildren<Transform>();
-
-        // GetComponentsInChildren includes the parent object so we need to skip it
         spawnPoints = transform.Cast<Transform>().Skip(1).ToArray();
 
-        // Subscribe to the OnEnemyDeath event
-        Enemy.OnEnemyDeath += HandleEnemyDeath;
-
+        LevelManager.Instance.SetInitialEnemyCount(enemyCount);
         StartCoroutine(SpawnEnemyRoutine());
-    }
-
-    void OnDestroy()
-    {
-        // Unsubscribe from the event to prevent memory leaks
-        Enemy.OnEnemyDeath -= HandleEnemyDeath;
-    }
-
-    void HandleEnemyDeath(Enemy enemy)
-    {
-        // Remove the dead enemy from the activeEnemies list
-        activeEnemies.Remove(enemy);
-
-        // Spawn a new enemy
-        SpawnEnemy();
     }
 
     void SpawnEnemy()
     {
         int randomIndex = Random.Range(0, spawnPoints.Length);
         Vector3 spawnPosition = spawnPoints[randomIndex].position;
-
-        // Stores the reference to the enemy so you can track and modify the instance
-        Enemy newEnemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
-        activeEnemies.Add(newEnemy);
+        Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
     }
 
-    //handles enemy spawn using IEnumerator
     IEnumerator SpawnEnemyRoutine()
     {
-        //while until false which is never in this implimentation
-        while (true)
+        for (int i = 0; i < enemyCount; i++)
         {
-            if (activeEnemies.Count < 10)
-            {
-                SpawnEnemy();
-            }
-            //IEnumerator functionality that lets the loop wait 1s
+            SpawnEnemy();
             yield return new WaitForSeconds(1f);
         }
     }

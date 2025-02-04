@@ -25,9 +25,8 @@ public class Enemy : MonoBehaviour
 
     private void Die()
     {
-        Debug.Log("Enemy died!");
-
         OnEnemyDeath?.Invoke(this);
+        LevelManager.Instance.EnemyDefeated();
 
         Destroy(gameObject);
     }
