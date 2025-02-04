@@ -2,11 +2,13 @@ using UnityEngine;
 
 public class EnemyBullet : Bullet
 {
+    [SerializeField] private float bulletLifetime = 10f;
+    [SerializeField] private float bulletSpeed = 5f;
+    [SerializeField] private float bulletDamage = 10f;
+
     protected override void Start()
     {
-        Speed = 2f;
-        BulletLife = 10f;
-        DamageAmount = 10f;
+        Initialize(bulletLifetime, bulletSpeed, bulletDamage);
         base.Start();
     }
 

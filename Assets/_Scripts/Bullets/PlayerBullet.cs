@@ -2,17 +2,15 @@ using UnityEngine;
 
 public class PlayerBullet : Bullet
 {
+    [SerializeField] private float bulletLifetime = 10f;
+    [SerializeField] private float bulletSpeed = 5f;
+    [SerializeField] private float bulletDamage = 10f;
+    [SerializeField] private float knockbackMultiplier = 2f;
+
     protected override void Start()
     {
-        Speed = 5f;
-        BulletLife = 10f;
-        DamageAmount = 10f;
+        Initialize(bulletLifetime, bulletSpeed, bulletDamage);
         base.Start();
-    }
-    //collision detection when bullet encounters a rigidbody
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        Destroy(gameObject);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -24,18 +22,21 @@ public class PlayerBullet : Bullet
 
             if (enemy != null)
             {
-                // Apply damage
                 enemy.TakeDamage(DamageAmount);
 
-                // Apply knockback if they have a rigidbody
                 if (enemyRb != null)
                 {
-                    float knockbackForce = Speed * 2f; // Adjust this multiplier as needed
+                    float knockbackForce = Speed * knockbackMultiplier;
                     enemyRb.AddForce(transform.up * knockbackForce, ForceMode2D.Impulse);
                 }
 
                 Destroy(gameObject);
             }
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Destroy(gameObject);
     }
 }

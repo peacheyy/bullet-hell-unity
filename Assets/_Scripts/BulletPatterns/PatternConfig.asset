@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6009f95312ebf1e4997a7f30a6a9d793, type: 3}
   m_Name: PatternConfig
   m_EditorClassIdentifier: 
-  patternSequence: 0100000000000000
+  patternSequence: 0000000001000000
   switchInterval: 4

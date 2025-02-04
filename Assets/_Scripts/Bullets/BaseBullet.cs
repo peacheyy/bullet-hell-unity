@@ -5,27 +5,17 @@ public class Bullet : MonoBehaviour
     private float timer = 0f;
     private Rigidbody2D rb;
 
-    private float _bulletLife = 1f;
-    private float _speed = 1f;
-    private float _damageAmount = 5f;
+    // Properties with private setters for better encapsulation
+    public float BulletLife { get; private set; } = 1f;
+    public float Speed { get; private set; } = 1f;
+    public float DamageAmount { get; private set; } = 5f;
 
-    //getters for bullet traits
-    public float BulletLife
+    // Initialization method to set up the bullet's properties
+    public void Initialize(float lifetime, float speed, float damage)
     {
-        get { return _bulletLife; }
-        set { _bulletLife = value; }
-    }
-
-    public float Speed
-    {
-        get { return _speed; }
-        set { _speed = value; }
-    }
-
-    public float DamageAmount
-    {
-        get { return _damageAmount; }
-        set { _damageAmount = value; }
+        BulletLife = lifetime;
+        Speed = speed;
+        DamageAmount = damage;
     }
 
     protected virtual void Start()
@@ -48,7 +38,6 @@ public class Bullet : MonoBehaviour
     //checks whether the fired bullet's life exceeds the timer
     protected virtual void HandleLifetime()
     {
-
         if (timer > BulletLife)
         {
             Destroy(gameObject);
@@ -56,6 +45,4 @@ public class Bullet : MonoBehaviour
         }
         timer += Time.deltaTime;
     }
-
-    
 }
