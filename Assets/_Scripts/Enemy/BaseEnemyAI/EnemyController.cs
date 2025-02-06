@@ -24,7 +24,7 @@ public class EnemyAIMovement : MonoBehaviour
 
             // 2. Smoothly rotate the enemy
             float currentAngle = rb.rotation;
-            float newAngle = Mathf.LerpAngle(currentAngle, targetAngle, rotationSpeed * Time.fixedDeltaTime);
+            float newAngle = Mathf.Lerp(currentAngle, targetAngle, rotationSpeed * Time.fixedDeltaTime);
             rb.MoveRotation(newAngle);
 
             // 3. Move the enemy

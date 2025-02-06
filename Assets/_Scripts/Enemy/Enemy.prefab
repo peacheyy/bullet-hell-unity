@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5271929377634557403}
   - component: {fileID: -7066982579617499042}
   - component: {fileID: 6880306935665848019}
+  - component: {fileID: 5870040915723827113}
   - component: {fileID: 6527938876147601182}
   - component: {fileID: 5031236908313319248}
   m_Layer: 0
@@ -116,6 +117,22 @@ MonoBehaviour:
   target: {fileID: 0}
   moveSpeed: 1
   rotationSpeed: 5
+--- !u!114 &5870040915723827113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3683857671874382715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bfd6522a382fa84d917205e8d81debf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weapon: {fileID: 594547188078694445, guid: b36eacd9a275b914a9ebbf73be82e22c, type: 3}
+  target: {fileID: 0}
+  rotationSpeed: 5
+  weaponDistance: 3
 --- !u!50 &6527938876147601182
 Rigidbody2D:
   serializedVersion: 4
