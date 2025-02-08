@@ -1,10 +1,10 @@
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections.Generic;
 
 public class BulletPatternManager : MonoBehaviour
 {
     [SerializeField] PatternConfig _config;
-    [SerializeField] GameObject _bulletPrefab;
+    [SerializeField] string bulletPoolKey = "EnemyBullet";
     [SerializeField] Transform[] _firePoints;
 
     private Dictionary<PatternType, IBulletPattern> _patterns;
@@ -14,10 +14,11 @@ public class BulletPatternManager : MonoBehaviour
 
     private void Start()
     {
+        // this is a dictionary of all the bullet patterns available (currently only 2)
         _patterns = new Dictionary<PatternType, IBulletPattern>
         {
-            { PatternType.Spiral, new SpiralPattern() },
-            { PatternType.Circle, new CirclePattern() }
+            { PatternType.Spiral, new SpiralPattern(bulletPoolKey) },
+            { PatternType.Circle, new CirclePattern(bulletPoolKey) }
         };
 
         _currentPattern = _patterns[_config.patternSequence[0]];
@@ -25,6 +26,7 @@ public class BulletPatternManager : MonoBehaviour
 
     private void Update()
     {
+        // handles time so the patterns are spaced out accordingly
         _timer += Time.deltaTime;
         if (_timer >= _config.switchInterval)
         {
@@ -32,9 +34,10 @@ public class BulletPatternManager : MonoBehaviour
             _timer = 0f;
         }
 
-        _currentPattern?.Execute(transform, _firePoints, _bulletPrefab);
+        _currentPattern?.Execute(transform, _firePoints);
     }
 
+    // because the patterns are in a dictionary, I just need to iterate through to go to the next one
     private void NextPattern()
     {
         _currentIndex = (_currentIndex + 1) % _config.patternSequence.Length;

@@ -4,10 +4,21 @@ public class Weapon : MonoBehaviour
 {
     [SerializeField] GameObject bulletPrefab;
     [SerializeField] Transform firePoint;
+    [SerializeField] string bulletPoolKey = "PlayerBullet"; // necessary so the bullets fired have a key value
+    
+    private void Start()
+    {
+        // Validate that the pool exists
+        if (BulletPoolManager.Instance == null)
+        {
+            Debug.LogError("No BulletPoolManager found in scene!");
+            enabled = false;
+            return;
+        }
+    }
 
     void Update()
     {
-        //checks if input is left mouse button and if it is shoot bullet
         if (Input.GetMouseButtonDown(0))
         {
             Fire();
@@ -16,11 +27,17 @@ public class Weapon : MonoBehaviour
 
     public void Fire()
     {
-        //can be switched to just _ but i feel like i'll need to use this for something in the future
-        GameObject bullet = Instantiate(
-            bulletPrefab,
+        // instead of creating a new bullet, this grabs from the bullets in the pool queue
+        Bullet bullet = BulletPoolManager.Instance.GetBullet(
+            bulletPoolKey,
             firePoint.position,
             firePoint.rotation
-            );
+        );
+
+        if (bullet != null)
+        {
+            // Initialize bullet properties
+            bullet.Initialize(10f, 5f, 10f);
+        }
     }
 }

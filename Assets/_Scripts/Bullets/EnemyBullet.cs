@@ -6,16 +6,16 @@ public class EnemyBullet : Bullet
     [SerializeField] private float bulletSpeed = 5f;
     [SerializeField] private float bulletDamage = 10f;
 
-    protected override void Start()
+    // OnEnable gets called everytime a GameObject is enabled (in this case, when a bullet is fired)
+    protected override void OnEnable() 
     {
         Initialize(bulletLifetime, bulletSpeed, bulletDamage);
-        base.Start();
+        base.OnEnable();
     }
 
-    //collision detection when bullet encounters a rigidbody
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Destroy(gameObject);
+        ReturnToPool();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -26,8 +26,10 @@ public class EnemyBullet : Bullet
             if (player != null)
             {
                 player.TakeDamage(DamageAmount);
-                Destroy(gameObject);  // Destroy bullet after hitting player
+                ReturnToPool();
             }
         }
     }
 }
+
+

@@ -7,10 +7,11 @@ public class PlayerBullet : Bullet
     [SerializeField] private float bulletDamage = 10f;
     [SerializeField] private float knockbackMultiplier = 2f;
 
-    protected override void Start()
+    // OnEnable gets called everytime a GameObject is enabled (in this case, when a bullet is fired)
+    protected override void OnEnable()  
     {
         Initialize(bulletLifetime, bulletSpeed, bulletDamage);
-        base.Start();
+        base.OnEnable();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -30,13 +31,13 @@ public class PlayerBullet : Bullet
                     enemyRb.AddForce(transform.up * knockbackForce, ForceMode2D.Impulse);
                 }
 
-                Destroy(gameObject);
+                ReturnToPool(); 
             }
         }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Destroy(gameObject);
+        ReturnToPool(); 
     }
 }

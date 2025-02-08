@@ -9,8 +9,14 @@ public class SpiralPattern : IBulletPattern
 
     private float _timer;
     private float _bulletSpawnTimer;
+    private readonly string _bulletPoolKey;
 
-    public void Execute(Transform spawner, Transform[] firePoints, GameObject bulletPrefab)
+    public SpiralPattern(string bulletPoolKey)
+    {
+        _bulletPoolKey = bulletPoolKey;
+    }
+
+    public void Execute(Transform spawner, Transform[] firePoints)
     {
         _timer += Time.deltaTime;
 
@@ -21,10 +27,16 @@ public class SpiralPattern : IBulletPattern
             _bulletSpawnTimer += Time.deltaTime;
             if (_bulletSpawnTimer >= BULLET_SPAWN_INTERVAL)
             {
-                // Spawn from all firePoints
                 foreach (Transform firePoint in firePoints)
                 {
-                    GameObject.Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+                    // instead of creating a new bullet, this grabs from the bullets in the pool queue
+                    Bullet bullet = BulletPoolManager.Instance.GetBullet(
+                        _bulletPoolKey,
+                        firePoint.position,
+                        firePoint.rotation
+                    );
+                    
+                    bullet.Initialize(5f, 8f, 10f);
                 }
                 _bulletSpawnTimer = 0f;
             }
