@@ -1,9 +1,11 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
     [SerializeField] float moveSpeed = 5f;
     [SerializeField] float rotationSpeed = 5f;
+    [SerializeField] float distance = 2f;
 
     private Transform target;
     private Rigidbody2D rb;
@@ -38,10 +40,24 @@ public class EnemyController : MonoBehaviour
             float newAngle = Mathf.Lerp(currentAngle, targetAngle, rotationSpeed * Time.fixedDeltaTime);
             rb.MoveRotation(newAngle);
 
+            
             // 3. Move the enemy
-            moveDirection = direction;
-            Vector2 targetVelocity = moveDirection * moveSpeed;
-            rb.velocity = Vector2.Lerp(rb.velocity, targetVelocity, Time.fixedDeltaTime * 5f);
+            if(GetDistanceToTarget() > distance)
+            {
+                moveDirection = direction;
+                Vector2 targetVelocity = moveDirection * moveSpeed;
+                rb.velocity = Vector2.Lerp(rb.velocity, targetVelocity, Time.fixedDeltaTime * 5f);
+            }
+            else
+            {
+                rb.velocity = Vector2.zero;
+            }
         }
+    }
+
+    public float GetDistanceToTarget()
+    {
+        if (target == null) return float.MaxValue;
+        return Vector2.Distance(transform.position, target.position);
     }
 }
