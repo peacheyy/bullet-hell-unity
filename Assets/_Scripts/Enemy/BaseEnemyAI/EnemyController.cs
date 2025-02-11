@@ -1,17 +1,28 @@
 using UnityEngine;
 
-public class EnemyAIMovement : MonoBehaviour
+public class EnemyController : MonoBehaviour
 {
-    [SerializeField] Transform target; // Serialized field for Inspector access
-    [SerializeField] float moveSpeed = 5f; // Serialized field for Inspector access
-    [SerializeField] float rotationSpeed = 5f; // Serialized field for Inspector access
+    [SerializeField] float moveSpeed = 5f;
+    [SerializeField] float rotationSpeed = 5f;
 
+    private Transform target;
     private Rigidbody2D rb;
     private Vector2 moveDirection;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+
+        // Find the player by tag (make sure your player prefab has the "Player" tag)
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
+        {
+            target = player.transform;
+        }
+        else
+        {
+            Debug.LogWarning("EnemyController: No player found in scene!");
+        }
     }
 
     void FixedUpdate()
