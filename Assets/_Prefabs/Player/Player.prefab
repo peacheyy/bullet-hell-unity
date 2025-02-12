@@ -133,7 +133,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponObject: {fileID: 594547188078694445, guid: b36eacd9a275b914a9ebbf73be82e22c, type: 3}
-  rb: {fileID: 240957967756934347}
   centerPoint: {fileID: 3196469001888414071}
   weaponDistance: 0.5
   rotationSpeed: 1
@@ -258,6 +257,10 @@ PrefabInstance:
     - target: {fileID: 3456540875101914108, guid: b36eacd9a275b914a9ebbf73be82e22c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5347948211179509875, guid: b36eacd9a275b914a9ebbf73be82e22c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

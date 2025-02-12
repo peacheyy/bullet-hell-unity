@@ -35,7 +35,7 @@ Transform:
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1324255290244118432}
+  - {fileID: 6074207472669687020}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2292265711925457566
@@ -130,7 +130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bfd6522a382fa84d917205e8d81debf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponObject: {fileID: 6586502460515837948}
+  weaponObject: {fileID: 2111253362620574896}
   centerPoint: {fileID: 6373552084106970818}
   weaponDistance: 0.5
   rotationSpeed: 5
@@ -209,7 +209,7 @@ PolygonCollider2D:
       - {x: -0.5, y: -0.28866667}
       - {x: 0.5, y: -0.28866667}
   m_UseDelaunayMesh: 0
---- !u!1001 &529784748946763569
+--- !u!1001 &4715678670045668477
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -257,26 +257,50 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4345549480331912030, guid: d2ce8aca89aefd044b06ac09ffe34956, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
     - target: {fileID: 6646707748835444941, guid: d2ce8aca89aefd044b06ac09ffe34956, type: 3}
       propertyPath: m_Name
-      value: Weapon
-      objectReference: {fileID: 0}
-    - target: {fileID: 6646707748835444941, guid: d2ce8aca89aefd044b06ac09ffe34956, type: 3}
-      propertyPath: m_IsActive
-      value: 1
+      value: EnemyWeapon
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6646707748835444941, guid: d2ce8aca89aefd044b06ac09ffe34956, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5366666435332927146}
   m_SourcePrefab: {fileID: 100100000, guid: d2ce8aca89aefd044b06ac09ffe34956, type: 3}
---- !u!4 &1324255290244118432 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1529710153128646801, guid: d2ce8aca89aefd044b06ac09ffe34956, type: 3}
-  m_PrefabInstance: {fileID: 529784748946763569}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &6586502460515837948 stripped
+--- !u!1 &2111253362620574896 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6646707748835444941, guid: d2ce8aca89aefd044b06ac09ffe34956, type: 3}
-  m_PrefabInstance: {fileID: 529784748946763569}
+  m_PrefabInstance: {fileID: 4715678670045668477}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5366666435332927146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2111253362620574896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27c6b31df0a83da4a8d791acbe9cc900, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firePoint: {fileID: 2810084824885716759}
+  bulletPrefab: {fileID: 8148995589257855361, guid: 6794094e8535da941a3fd796da8789bf, type: 3}
+  bulletPoolKey: EnemyBullet
+  fireCooldown: 3
+--- !u!4 &2810084824885716759 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7461929698112701290, guid: d2ce8aca89aefd044b06ac09ffe34956, type: 3}
+  m_PrefabInstance: {fileID: 4715678670045668477}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &6074207472669687020 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1529710153128646801, guid: d2ce8aca89aefd044b06ac09ffe34956, type: 3}
+  m_PrefabInstance: {fileID: 4715678670045668477}
   m_PrefabAsset: {fileID: 0}

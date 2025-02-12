@@ -1,10 +1,9 @@
 using UnityEngine;
 
-public class WeaponController : MonoBehaviour
+public class PlayerAimController : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] GameObject weaponObject;
-    [SerializeField] Rigidbody2D rb;
     [SerializeField] Transform centerPoint;
 
     [Header("Weapon Settings")]

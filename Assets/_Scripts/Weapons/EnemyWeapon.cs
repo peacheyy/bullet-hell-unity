@@ -1,11 +1,15 @@
+using System.Collections;
 using UnityEngine;
 
-public class Weapon : MonoBehaviour
+public class EnemyWeapon : MonoBehaviour
 {
-    [SerializeField] GameObject bulletPrefab;
     [SerializeField] Transform firePoint;
-    [SerializeField] string bulletPoolKey = "PlayerBullet"; // necessary so the bullets fired have a key value
-    
+    [SerializeField] GameObject bulletPrefab;
+    [SerializeField] string bulletPoolKey = "EnemyBullet";
+    [SerializeField] float fireCooldown;
+
+    private bool canFire = true;
+
     private void Start()
     {
         // Validate that the pool exists
@@ -17,16 +21,21 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    void Update()
+    private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (canFire)
         {
-            Fire();
+            canFire = false;
+            StartCoroutine(Fire());
         }
     }
 
-    public void Fire()
+    private IEnumerator Fire()
     {
+        // Charging up shot
+        // Wait for the cooldown before allowing another fire 
+        yield return new WaitForSeconds(fireCooldown);
+
         // instead of creating a new bullet, this grabs from the bullets in the pool queue
         Bullet bullet = BulletPoolManager.Instance.GetBullet(
             bulletPoolKey,
@@ -39,5 +48,7 @@ public class Weapon : MonoBehaviour
             // Initialize bullet properties
             bullet.Initialize(10f, 5f, 10f);
         }
+
+        canFire = true;
     }
 }
