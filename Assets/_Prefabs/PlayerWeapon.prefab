@@ -26,9 +26,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 594547188078694445}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0.5735181, w: -0.81919295}
-  m_LocalPosition: {x: -1.350022, y: -0.02690953, z: 0}
-  m_LocalScale: {x: 0.125, y: 0.25, z: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0.6511494, w: 0.7589496}
+  m_LocalPosition: {x: 0.57180065, y: -0.82186383, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5347948211179509875}
@@ -100,6 +100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 3528006308262973344, guid: 44a0460b19cf32a468fcb59df15e543b, type: 3}
   firePoint: {fileID: 5347948211179509875}
+  bulletPoolKey: PlayerBullet
 --- !u!1 &8870196126493155347
 GameObject:
   m_ObjectHideFlags: 0

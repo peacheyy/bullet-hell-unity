@@ -1,15 +1,14 @@
 using UnityEngine;
 
-public class FloatingWeapon2D : MonoBehaviour
+public class EnemyAimController : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] private GameObject weaponObject;
-    [SerializeField] private Transform centerPoint;
+    [SerializeField] GameObject weaponObject;
+    [SerializeField] Transform centerPoint;
 
     [Header("Weapon Settings")]
-    [SerializeField] private float weaponDistance = 1f;    // Distance from enemy center
-    [SerializeField] private float rotationSpeed = 5f;
-    [SerializeField] private bool smoothRotation = true;
+    [SerializeField] float weaponDistance = 1f;    // Distance from enemy center
+    [SerializeField] float rotationSpeed = 5f;
 
     private Transform playerTransform;
     private Vector2 targetPosition;
@@ -20,7 +19,7 @@ public class FloatingWeapon2D : MonoBehaviour
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player == null)
         {
-            Debug.LogError("FloatingWeapon2D: Cannot find player with tag 'Player'!");
+            Debug.LogError("Cannot find player with tag 'Player'!");
             enabled = false;
             return;
         }
@@ -39,9 +38,10 @@ public class FloatingWeapon2D : MonoBehaviour
         }
     }
 
+    // do i really need this in an if statement with smoothRotation being a bool?
     private void Update()
     {
-        if (!enabled || centerPoint == null || playerTransform == null) return;
+        if (centerPoint == null || playerTransform == null) return;
 
         // Calculate direction to player
         Vector2 directionToPlayer = (Vector2)playerTransform.position - (Vector2)centerPoint.position;
@@ -53,10 +53,6 @@ public class FloatingWeapon2D : MonoBehaviour
 
         // Set the weapon position
         targetPosition = (Vector2)centerPoint.position + new Vector2(xOffset, yOffset);
-
-        // Update position and rotation
-        if (smoothRotation)
-        {
             // Smooth position movement
             weaponObject.transform.position = Vector2.Lerp(
                 weaponObject.transform.position,
@@ -69,13 +65,6 @@ public class FloatingWeapon2D : MonoBehaviour
             float targetAngle = angleToPlayer * Mathf.Rad2Deg;
             float smoothedAngle = Mathf.LerpAngle(currentRotation, targetAngle, rotationSpeed * Time.deltaTime);
             weaponObject.transform.rotation = Quaternion.Euler(0, 0, smoothedAngle);
-        }
-        else
-        {
-            // Instant position and rotation
-            weaponObject.transform.position = targetPosition;
-            weaponObject.transform.rotation = Quaternion.Euler(0, 0, angleToPlayer * Mathf.Rad2Deg);
-        }
     }
 
     // Helper method to visualize in the editor

@@ -134,7 +134,6 @@ MonoBehaviour:
   centerPoint: {fileID: 6373552084106970818}
   weaponDistance: 0.5
   rotationSpeed: 5
-  smoothRotation: 1
 --- !u!50 &201920177781142270
 Rigidbody2D:
   serializedVersion: 4
@@ -220,11 +219,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1529710153128646801, guid: d2ce8aca89aefd044b06ac09ffe34956, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.041
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1529710153128646801, guid: d2ce8aca89aefd044b06ac09ffe34956, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.007
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1529710153128646801, guid: d2ce8aca89aefd044b06ac09ffe34956, type: 3}
       propertyPath: m_LocalPosition.z
@@ -232,7 +231,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1529710153128646801, guid: d2ce8aca89aefd044b06ac09ffe34956, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.9493848
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1529710153128646801, guid: d2ce8aca89aefd044b06ac09ffe34956, type: 3}
       propertyPath: m_LocalRotation.x
@@ -244,7 +243,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1529710153128646801, guid: d2ce8aca89aefd044b06ac09ffe34956, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.31411535
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1529710153128646801, guid: d2ce8aca89aefd044b06ac09ffe34956, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
