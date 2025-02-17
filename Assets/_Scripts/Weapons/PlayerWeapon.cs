@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class PlayerWeapon : MonoBehaviour
@@ -19,7 +20,7 @@ public class PlayerWeapon : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !PauseMenu.instance.getGameStatus())
         {
             Fire();
         }
