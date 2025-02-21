@@ -13,12 +13,12 @@ TagManager:
   - Water
   - UI
   - Player
+  - PlayerWeapon
   - Enemy
+  - EnemyWeapon
   - FirePoint
-  - Bullet
-  - 
-  - 
-  - 
+  - EnemyBullet
+  - PlayerBullet
   - 
   - 
   - 

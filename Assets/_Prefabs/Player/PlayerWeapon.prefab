@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3456540875101914108}
   - component: {fileID: 5645111068961568068}
   - component: {fileID: 4670142391880976517}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PlayerWeapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26,8 +26,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 594547188078694445}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0.61689913, w: 0.7870422}
-  m_LocalPosition: {x: -2.8534997, y: -1.4624556, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0.72402436, w: 0.6897744}
+  m_LocalPosition: {x: 5.4928436, y: -2.2961776, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
