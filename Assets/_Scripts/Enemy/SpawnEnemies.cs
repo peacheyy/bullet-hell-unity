@@ -22,7 +22,7 @@ public class SpawnEnemies : MonoBehaviour
 
     [Header("Spawn Settings")]
     [SerializeField] SpawnableEnemy[] spawnableEnemies;        // Array of possible enemies to spawn
-    [SerializeField] int maxEnemies = 5;                       // Total number of enemies to spawn
+    [SerializeField] int maxEnemies = 10;                      // Total number of enemies to spawn
     [SerializeField] float spawnInterval = 1f;                 // Time between spawns
     [SerializeField] float minDistanceFromPlayer = 5f;         // Minimum spawn distance from player
 
@@ -46,6 +46,35 @@ public class SpawnEnemies : MonoBehaviour
 
         // Begin spawning enemies
         StartCoroutine(SpawnRoutine());
+    }
+
+    private float CalculateTotalWeight()
+    {
+        float totalWeight = 0f;
+        for (int i = 0; i < spawnableEnemies.Length; i++)
+        {
+            totalWeight += spawnableEnemies[i].spawnWeight;
+        }
+        return totalWeight;
+    }
+
+    private Enemy GetRandomEnemy()
+    {
+        float totalWeight = CalculateTotalWeight();
+        float randomValue = Random.Range(0f, totalWeight);
+
+        float currentTotal = 0f; // Tracks running total for ranges
+
+        for (int i = 0; i < spawnableEnemies.Length; i++)
+        {
+            currentTotal += spawnableEnemies[i].spawnWeight; // Add current enemy's weight
+            if (randomValue < currentTotal) // Check if random value falls in this range
+            {
+                return spawnableEnemies[i].enemyPrefab;
+            }
+        }
+
+        return spawnableEnemies[0].enemyPrefab; // Safety fallback
     }
 
     // Generates a random position within the spawn area that's far enough from the player.
@@ -95,9 +124,16 @@ public class SpawnEnemies : MonoBehaviour
     // Spawns a single enemy at a random position within the spawn area.
     private void SpawnEnemy()
     {
-        Enemy enemyPrefab = spawnableEnemies[0].enemyPrefab;
+        Enemy enemyPrefab = GetRandomEnemy();
         Vector3 spawnPosition = GetRandomSpawnPosition();
         Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
+    }
+
+    // Stops the spawning process. Can be called from other scripts
+    // to end spawning early.
+    public void StopSpawning()
+    {
+        isSpawning = false;
     }
 
     // Draws the spawn area and minimum player distance in the Unity editor.
@@ -116,12 +152,5 @@ public class SpawnEnemies : MonoBehaviour
             Gizmos.color = Color.yellow;
             Gizmos.DrawWireSphere(playerTransform.position, minDistanceFromPlayer);
         }
-    }
-
-    // Stops the spawning process. Can be called from other scripts
-    // to end spawning early.
-    public void StopSpawning()
-    {
-        isSpawning = false;
     }
 }

@@ -140,6 +140,10 @@ PrefabInstance:
       value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2491616085873175653, guid: e3b279e72a1964a4795d04875cfdc33d, type: 3}
+      propertyPath: dashSpeed
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2491616085873175653, guid: e3b279e72a1964a4795d04875cfdc33d, type: 3}
       propertyPath: moveSpeed
       value: 2.5
       objectReference: {fileID: 0}
@@ -707,10 +711,12 @@ MonoBehaviour:
   visualizeSpawnArea: 1
   gizmoColor: {r: 1, g: 0, b: 0, a: 0.2}
   spawnableEnemies:
+  - enemyPrefab: {fileID: 6994385647808284102, guid: adbc0f6f08b1a0e408a896f79e6ea69d, type: 3}
+    spawnWeight: 0.095
   - enemyPrefab: {fileID: 6994385647808284102, guid: 84dbf6f3cf3b2484e8549ce307489611, type: 3}
-    spawnWeight: 1
-  maxEnemies: 5
-  spawnInterval: 1
+    spawnWeight: 0.935
+  maxEnemies: 100
+  spawnInterval: 0.1
   minDistanceFromPlayer: 5
 --- !u!4 &488197057
 Transform:
@@ -1465,10 +1471,10 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.0005885815
-    y: 0
-    width: 0.9982342
-    height: 0.99999994
+    x: 0.00078125
+    y: 0.0015885624
+    width: 0.9984375
+    height: 0.9960286
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -1502,7 +1508,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 506282251}
-  smoothValue: 0.05
+  smoothValue: 0.01
   maxCameraDistance: 4
   cameraThreshold: 0.9
 --- !u!114 &1281295402
