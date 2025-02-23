@@ -4,7 +4,6 @@ using UnityEngine;
 public class PatternConfig : ScriptableObject
 {
     public PatternType[] patternSequence;
-    public float switchInterval;
 }
 
 public enum PatternType

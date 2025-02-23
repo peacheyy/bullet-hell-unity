@@ -4,12 +4,14 @@ public class SpiralPattern : IBulletPattern
 {
     private readonly float _rotation = 720f;
     private const float BULLET_SPAWN_INTERVAL = 0.1f;
-    private const float MAX_TIME = 3f;
+    private const float MAX_TIME = 1f;
     private const float MAX_ROTATION_TIME = 1f;
 
     private float _timer;
     private float _bulletSpawnTimer;
     private readonly string _bulletPoolKey;
+
+    public bool IsComplete { get; private set; }
 
     public SpiralPattern(string bulletPoolKey)
     {
@@ -20,8 +22,11 @@ public class SpiralPattern : IBulletPattern
     {
         _timer += Time.deltaTime;
 
+        IsComplete = false;
+
         if (_timer >= MAX_TIME && _timer <= MAX_TIME + MAX_ROTATION_TIME)
         {
+
             spawner.Rotate(0, 0, _rotation * Time.deltaTime);
 
             _bulletSpawnTimer += Time.deltaTime;
@@ -45,12 +50,12 @@ public class SpiralPattern : IBulletPattern
         if (_timer >= MAX_TIME + MAX_ROTATION_TIME)
         {
             spawner.rotation = Quaternion.Euler(0, 0, 0);
-            Reset();
+            IsComplete = true;
         }
     }
 
     public void Reset()
-    {
+    {   
         _timer = 0f;
         _bulletSpawnTimer = 0f;
     }

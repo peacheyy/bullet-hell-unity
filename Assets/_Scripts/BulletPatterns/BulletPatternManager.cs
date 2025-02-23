@@ -10,8 +10,7 @@ public class BulletPatternManager : MonoBehaviour
     private Dictionary<PatternType, IBulletPattern> _patterns;
     private IBulletPattern _currentPattern;
     private int _currentIndex;
-    private float _timer;
-
+    
     private void Start()
     {
         // this is a dictionary of all the bullet patterns available (currently only 2)
@@ -27,11 +26,9 @@ public class BulletPatternManager : MonoBehaviour
     private void Update()
     {
         // handles time so the patterns are spaced out accordingly
-        _timer += Time.deltaTime;
-        if (_timer >= _config.switchInterval)
+        if (_currentPattern.IsComplete)
         {
             NextPattern();
-            _timer = 0f;
         }
 
         _currentPattern?.Execute(transform, _firePoints);

@@ -715,8 +715,8 @@ MonoBehaviour:
     spawnWeight: 0.095
   - enemyPrefab: {fileID: 6994385647808284102, guid: 84dbf6f3cf3b2484e8549ce307489611, type: 3}
     spawnWeight: 0.935
-  maxEnemies: 100
-  spawnInterval: 0.1
+  maxEnemies: 10
+  spawnInterval: 1
   minDistanceFromPlayer: 5
 --- !u!4 &488197057
 Transform:
