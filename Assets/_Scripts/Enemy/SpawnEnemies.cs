@@ -27,6 +27,7 @@ public class SpawnEnemies : MonoBehaviour
     [SerializeField] float minDistanceFromPlayer = 5f;         // Minimum spawn distance from player
 
     private Transform playerTransform;
+    private int currentEnemyCount = 0;
     private bool isSpawning;        // Controls spawn coroutine
 
     private void Start()
@@ -40,9 +41,7 @@ public class SpawnEnemies : MonoBehaviour
             return;
         }
 
-
-        // Tell LevelManager how many enemies to expect
-        LevelManager.Instance.SetInitialEnemyCount(maxEnemies);
+        Enemy.OnEnemyDeath += HandleEnemyDeath;
 
         // Begin spawning enemies
         StartCoroutine(SpawnRoutine());
@@ -107,17 +106,31 @@ public class SpawnEnemies : MonoBehaviour
         return transform.position;  // Fallback to center if no valid position found
     }
 
+    private void HandleEnemyDeath(Enemy enemy)
+    {
+        // Decrement the count when an enemy dies
+        currentEnemyCount--;
+    }
+
+    private void OnDestroy()
+    {
+        Enemy.OnEnemyDeath -= HandleEnemyDeath;
+    }
+
     // Coroutine that handles the spawning of enemies over time.
     // Continues until maxEnemies is reached or stopped manually.
     private IEnumerator SpawnRoutine()
     {
         isSpawning = true;
 
-        while (isSpawning && maxEnemies > 0)
+        while (isSpawning)
         {
-            SpawnEnemy();
+            if (currentEnemyCount < maxEnemies)
+            {
+                SpawnEnemy();
+                currentEnemyCount++;
+            }
             yield return new WaitForSeconds(spawnInterval);
-            maxEnemies--;
         }
     }
 
@@ -129,8 +142,7 @@ public class SpawnEnemies : MonoBehaviour
         Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
     }
 
-    // Stops the spawning process. Can be called from other scripts
-    // to end spawning early.
+    // Stops the spawning process. Can be called from other scripts to end spawning early.
     public void StopSpawning()
     {
         isSpawning = false;

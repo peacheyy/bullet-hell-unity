@@ -4,6 +4,7 @@ public class Enemy : MonoBehaviour
 {
     [Header("Enemy Stats")]
     [SerializeField] float maxHealth = 25f;
+    [SerializeField] bool isBoss = false;
 
     public HealthBar healthBar;
 
@@ -31,7 +32,12 @@ public class Enemy : MonoBehaviour
     private void Die()
     {
         OnEnemyDeath?.Invoke(this);
-        LevelManager.Instance.EnemyDefeated();
+
+        if (isBoss)
+        {
+            // Signal level completion directly
+            LevelManager.Instance.BossDefeated();
+        }
 
         Destroy(gameObject);
     }
