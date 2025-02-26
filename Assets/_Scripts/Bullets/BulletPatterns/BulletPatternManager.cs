@@ -4,7 +4,6 @@ using System.Collections.Generic;
 public class BulletPatternManager : MonoBehaviour
 {
     [SerializeField] PatternConfig _config;
-    [SerializeField] string bulletPoolKey = "EnemyBullet";
     [SerializeField] Transform[] _firePoints;
 
     private Dictionary<PatternType, IBulletPattern> _patterns;
@@ -16,8 +15,10 @@ public class BulletPatternManager : MonoBehaviour
         // this is a dictionary of all the bullet patterns available (currently only 2)
         _patterns = new Dictionary<PatternType, IBulletPattern>
         {
-            { PatternType.Spiral, new SpiralPattern(bulletPoolKey) },
-            { PatternType.Circle, new CirclePattern(bulletPoolKey) }
+            { PatternType.Spiral, new SpiralPattern("EnemyBullet") },
+            { PatternType.Circle, new CirclePattern("EnemyBullet") },
+            { PatternType.Sine, new SinePattern("SineBullet") },
+            { PatternType.Whip, new WhipPattern("EnemyBullet")}
         };
 
         _currentPattern = _patterns[_config.patternSequence[0]];

@@ -746,11 +746,9 @@ MonoBehaviour:
   visualizeSpawnArea: 1
   gizmoColor: {r: 1, g: 0, b: 0, a: 0.2}
   spawnableEnemies:
-  - enemyPrefab: {fileID: 6994385647808284102, guid: adbc0f6f08b1a0e408a896f79e6ea69d, type: 3}
-    spawnWeight: 0.095
   - enemyPrefab: {fileID: 6994385647808284102, guid: 84dbf6f3cf3b2484e8549ce307489611, type: 3}
-    spawnWeight: 0.935
-  maxEnemies: 10
+    spawnWeight: 1
+  maxEnemies: 1
   spawnInterval: 0.1
   minDistanceFromPlayer: 5
 --- !u!4 &488197057
@@ -1049,6 +1047,9 @@ MonoBehaviour:
     initialPoolSize: 100
   - key: PlayerBullet
     bulletPrefab: {fileID: 2793759657922765256, guid: 44a0460b19cf32a468fcb59df15e543b, type: 3}
+    initialPoolSize: 50
+  - key: SineBullet
+    bulletPrefab: {fileID: -943099156681319725, guid: 5eba978aec96fd4479a1d81adc18e48a, type: 3}
     initialPoolSize: 50
 --- !u!4 &632918181
 Transform:
@@ -1661,15 +1662,15 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.00078125
-    y: 0.0015885624
-    width: 0.9984375
-    height: 0.9960286
+    x: 0
+    y: 0
+    width: 1
+    height: 1
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 7.34375
+  orthographic size: 8.625
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2

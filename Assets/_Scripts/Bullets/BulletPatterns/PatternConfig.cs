@@ -9,5 +9,7 @@ public class PatternConfig : ScriptableObject
 public enum PatternType
 {
     Spiral,
-    Circle
+    Circle,
+    Sine,
+    Whip
 }
