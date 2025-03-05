@@ -4,6 +4,7 @@ public class SinePattern : IBulletPattern
 {
     private const int BULLET_COUNT = 24;
     private const float BULLET_SPAWN_INTERVAL = 1f;
+    
     private float _timer;
     private readonly string _bulletPoolKey;
 

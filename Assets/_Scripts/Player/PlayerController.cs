@@ -6,6 +6,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Rigidbody2D rb;
     [SerializeField] float moveSpeed = 2f;
 
+    [SerializeField] Player player;
+
     [Header("Dash Settings")]
     [SerializeField] float dashSpeed = 10f;
     [SerializeField] float dashDuration = 0.2f;
@@ -16,6 +18,14 @@ public class PlayerController : MonoBehaviour
 
     private Vector2 moveDirection;
     private Vector2 mousePosition;
+
+    void Start()
+    {
+        if (player == null)
+        {
+            player = GetComponent<Player>();
+        }
+    }
 
     void Update()
     {
@@ -50,7 +60,13 @@ public class PlayerController : MonoBehaviour
     private IEnumerator Dash()
     {
         isDashing = true;
+
         canDash = false;
+
+        if (player != null)
+        {
+            player.SetInvulnerable(true);
+        }
 
         // Store the original velocity and set the dash velocity
         Vector2 originalVelocity = rb.velocity;
@@ -63,6 +79,8 @@ public class PlayerController : MonoBehaviour
         rb.velocity = originalVelocity;
 
         isDashing = false;
+
+        player.SetInvulnerable(false);
 
         // Wait for the cooldown before allowing another dash
         yield return new WaitForSeconds(dashCooldown);

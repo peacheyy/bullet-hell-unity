@@ -58,9 +58,5 @@ public class PlayerCamera : MonoBehaviour
         // Smoothly move camera to that position
         Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothValue);
         transform.position = smoothedPosition;
-
-        
-
-        
     }
 }

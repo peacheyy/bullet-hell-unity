@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
     [SerializeField] float maxHealth = 100f;
 
     public HealthBar healthBar;
+    public bool isInvulnerable { get; private set; } = false;
 
     private float _currentHealth;
 
@@ -17,6 +18,7 @@ public class Player : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        if(isInvulnerable) { return; }
         _currentHealth -= damage;
 
         healthBar.SetHealth((int)_currentHealth);
@@ -35,5 +37,10 @@ public class Player : MonoBehaviour
     public float GetHealth()
     {
         return _currentHealth;
+    }
+
+    public void SetInvulnerable(bool invulnerable)
+    {
+        isInvulnerable = invulnerable;
     }
 }

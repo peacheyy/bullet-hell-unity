@@ -175,12 +175,20 @@ PrefabInstance:
       value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2491616085873175653, guid: e3b279e72a1964a4795d04875cfdc33d, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 289319396}
+    - target: {fileID: 2491616085873175653, guid: e3b279e72a1964a4795d04875cfdc33d, type: 3}
       propertyPath: dashSpeed
       value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 2491616085873175653, guid: e3b279e72a1964a4795d04875cfdc33d, type: 3}
       propertyPath: moveSpeed
-      value: 2.5
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2491616085873175653, guid: e3b279e72a1964a4795d04875cfdc33d, type: 3}
+      propertyPath: dashCooldown
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3196469001888414071, guid: e3b279e72a1964a4795d04875cfdc33d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -244,7 +252,7 @@ PrefabInstance:
       objectReference: {fileID: 463934981}
     - target: {fileID: 8123964995971469566, guid: e3b279e72a1964a4795d04875cfdc33d, type: 3}
       propertyPath: maxHealth
-      value: 100000
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -1670,7 +1678,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 8.625
+  orthographic size: 5.625
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2

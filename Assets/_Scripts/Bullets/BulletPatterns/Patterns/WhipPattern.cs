@@ -23,8 +23,9 @@ public class WhipPattern : IBulletPattern
         _timer += Time.deltaTime;
         IsComplete = false;
 
-        // Rotate the current angle based on time
-        _currentAngle += ROTATION_SPEED * Time.deltaTime;
+        float normalizedTime = _timer / PATTERN_DURATION; // 0 to 1 over pattern duration
+        float accelerationFactor = Mathf.Lerp(0.2f, 1.0f, normalizedTime); // Start at 20% speed
+        _currentAngle += ROTATION_SPEED * Time.deltaTime * accelerationFactor;
 
         // Spawn a new line of bullets every frame
         SpawnBulletLine(spawner);
@@ -40,7 +41,7 @@ public class WhipPattern : IBulletPattern
     {
         // Calculate the line direction based on current angle
         Quaternion lineRotation = Quaternion.Euler(0, 0, _currentAngle);
-        Vector3 lineDirection = lineRotation * Vector3.right;
+        Vector3 lineDirection = lineRotation * Vector3.zero;
 
         for (int i = 0; i < BULLETS_IN_LINE; i++)
         {
