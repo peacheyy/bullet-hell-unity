@@ -610,7 +610,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 58.80005, y: -11.200012}
+  m_AnchoredPosition: {x: 58.80005, y: -11.199951}
   m_SizeDelta: {x: 114.4767, y: 19.4225}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &463934981
@@ -756,6 +756,8 @@ MonoBehaviour:
   spawnableEnemies:
   - enemyPrefab: {fileID: 6994385647808284102, guid: 84dbf6f3cf3b2484e8549ce307489611, type: 3}
     spawnWeight: 1
+  - enemyPrefab: {fileID: 6994385647808284102, guid: adbc0f6f08b1a0e408a896f79e6ea69d, type: 3}
+    spawnWeight: 0.634
   maxEnemies: 4
   spawnInterval: 0.1
   minDistanceFromPlayer: 3
@@ -2834,7 +2836,7 @@ PrefabInstance:
       objectReference: {fileID: 956040591}
     - target: {fileID: 9101534412403491304, guid: ae937e9e08a35554482be3c0a8f32977, type: 3}
       propertyPath: maxHealth
-      value: 100
+      value: 250
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

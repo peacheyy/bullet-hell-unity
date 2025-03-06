@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3456540875101914108}
-  - component: {fileID: 5645111068961568068}
   - component: {fileID: 4670142391880976517}
+  - component: {fileID: 1651821113391638023}
   m_Layer: 7
   m_Name: PlayerWeapon
   m_TagString: Untagged
@@ -26,15 +26,30 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 594547188078694445}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0.47645885, w: 0.8791968}
-  m_LocalPosition: {x: 2.9918885, y: -3.6536002, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: -0.044817634, w: 0.9989952}
+  m_LocalPosition: {x: -4.7660613, y: 1.6606226, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5347948211179509875}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &5645111068961568068
+--- !u!114 &4670142391880976517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 594547188078694445}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b4a87e075143b34fb65abf4bd22979b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 3528006308262973344, guid: 44a0460b19cf32a468fcb59df15e543b, type: 3}
+  firePoint: {fileID: 5347948211179509875}
+  bulletPoolKey: PlayerBullet
+--- !u!212 &1651821113391638023
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -74,9 +89,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
-  m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
-  m_Color: {r: 0.33962262, g: 0.33962262, b: 0.33962262, a: 1}
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: 580460477962bcc44b00e89a75cd2956, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -86,21 +101,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4670142391880976517
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 594547188078694445}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b4a87e075143b34fb65abf4bd22979b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 3528006308262973344, guid: 44a0460b19cf32a468fcb59df15e543b, type: 3}
-  firePoint: {fileID: 5347948211179509875}
-  bulletPoolKey: PlayerBullet
 --- !u!1 &8870196126493155347
 GameObject:
   m_ObjectHideFlags: 0
