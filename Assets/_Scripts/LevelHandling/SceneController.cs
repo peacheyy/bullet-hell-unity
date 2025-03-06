@@ -28,7 +28,7 @@ public class SceneController : MonoBehaviour
         }
         else
         {
-            Debug.LogError($"Scene index {nextSceneIndex} is out of range!");
+            SceneManager.LoadSceneAsync(0);
         }
     }
 
