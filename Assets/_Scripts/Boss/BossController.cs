@@ -2,24 +2,24 @@ using UnityEngine;
 
 public class BossController : MonoBehaviour
 {
-    [SerializeField] private Enemy enemyComponent;
+    [SerializeField] private Enemy enemy;
 
     private int currentPhase = 1;
     private float maxHealth;
     private bool isInitialized = false;
 
     // Define the health percentages for phase transitions
-    private const float PHASE_2_THRESHOLD = 0.75f; // 75%
-    private const float PHASE_3_THRESHOLD = 0.5f;  // 50%
+    private const float PHASE_2_THRESHOLD = 0.50f; // 75%
+    private const float PHASE_3_THRESHOLD = 0.25f;  // 50%
 
     private void Start()
     {
         Debug.Log("BossController initialized");
 
         // Get reference to the Enemy component if not set in inspector
-        if (enemyComponent == null)
+        if (enemy == null)
         {
-            enemyComponent = GetComponent<Enemy>();
+            enemy = GetComponent<Enemy>();
         }
 
     }
@@ -29,7 +29,7 @@ public class BossController : MonoBehaviour
         // Initialize on first update to ensure Enemy component has initialized
         if (!isInitialized)
         {
-            maxHealth = enemyComponent.GetHealth();
+            maxHealth = enemy.GetHealth();
             Debug.Log($"Initializing max health: {maxHealth}");
             isInitialized = true;
 
@@ -42,7 +42,7 @@ public class BossController : MonoBehaviour
 
     private void CheckPhaseTransitions()
     {
-        float currentHealth = enemyComponent.GetHealth();
+        float currentHealth = enemy.GetHealth();
         float healthPercentage = currentHealth / maxHealth;
 
         if (healthPercentage <= PHASE_3_THRESHOLD && currentPhase < 3)

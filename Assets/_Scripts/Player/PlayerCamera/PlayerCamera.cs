@@ -41,7 +41,8 @@ public class PlayerCamera : MonoBehaviour
         // Check if mouse is beyond threshold in either direction
         if ((distanceFromCenter.x > cameraThreshold || distanceFromCenter.y > cameraThreshold) && !PauseMenu.instance.getGameStatus())
         {
-            // Calculate how far past threshold we are (0 to 1 range) thanks AI I don't really understand this other than it slows & smooths the transition at the edge of the screen!!!
+            // Calculate how far past threshold we are (0 to 1 range) 
+            // thanks AI I don't really understand this other than it slows & smooths the transition at the edge of the screen!!!
             float peekMultiplier = Mathf.Max(
                 Mathf.InverseLerp(cameraThreshold, 1f, distanceFromCenter.x),
                 Mathf.InverseLerp(cameraThreshold, 1f, distanceFromCenter.y)
