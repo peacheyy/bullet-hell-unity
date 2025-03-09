@@ -40,10 +40,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 509900340245730699}
+  - component: {fileID: 9101534412403491304}
   - component: {fileID: 2338457683318451280}
+  - component: {fileID: 6821334273986008354}
   - component: {fileID: 850994722371405071}
   - component: {fileID: 5338375671062762845}
-  - component: {fileID: 9101534412403491304}
   m_Layer: 8
   m_Name: BulletSpawner
   m_TagString: Untagged
@@ -70,7 +71,7 @@ Transform:
   - {fileID: 8025736008399835661}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2338457683318451280
+--- !u!114 &9101534412403491304
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -79,16 +80,45 @@ MonoBehaviour:
   m_GameObject: {fileID: 2480706031593172958}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c17b8016985e3124c9f8d60dbf3a6486, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 1000
+  isBoss: 1
+  healthBar: {fileID: 0}
+--- !u!114 &2338457683318451280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2480706031593172958}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ee74872f997809e45a14314066d6679d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _config: {fileID: 11400000, guid: 4361d2d5b1c2c224e85455cfece41062, type: 2}
-  bulletPoolKey: EnemyBullet
   _firePoints:
   - {fileID: 5852399992918060934}
   - {fileID: 3225754117202061638}
   - {fileID: 8933266231875575662}
   - {fileID: 8025736008399835661}
+--- !u!114 &6821334273986008354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2480706031593172958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcbb3f098809b3a46a0f95f7d92f12e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 5
+  rotationSpeed: 5
+  distance: 2
 --- !u!212 &850994722371405071
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -186,20 +216,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &9101534412403491304
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2480706031593172958}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c17b8016985e3124c9f8d60dbf3a6486, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 1000
-  healthBar: {fileID: 0}
 --- !u!1 &4442432561824373093
 GameObject:
   m_ObjectHideFlags: 0
