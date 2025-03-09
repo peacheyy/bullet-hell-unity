@@ -37,7 +37,6 @@ public class Bullet : MonoBehaviour
 
     protected virtual void OnEnable()
     {
-        Debug.Log($"Bullet {gameObject.name} enabled with poolKey: {poolKey}");
         if (rb != null)
         {
             InitMovement();
