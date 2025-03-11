@@ -12,7 +12,7 @@ public class BulletPatternManager : MonoBehaviour
     
     private void Start()
     {
-        // this is a dictionary of all the bullet patterns available (currently only 2)
+        // this is a dictionary of all the bullet patterns available
         _patterns = new Dictionary<PatternType, IBulletPattern>
         {
             { PatternType.Spiral, new SpiralPattern("EnemyBullet") },
