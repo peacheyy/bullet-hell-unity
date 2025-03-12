@@ -5,7 +5,6 @@ public class Player : MonoBehaviour
     [Header("Player Stats")]
     [SerializeField] float maxHealth = 100f;
 
-    public HealthBar healthBar;
     public bool isInvulnerable { get; private set; } = false;
 
     private float _currentHealth;
@@ -13,15 +12,12 @@ public class Player : MonoBehaviour
     void Start()
     {
         _currentHealth = maxHealth;
-        healthBar.SetMaxHealth((int)maxHealth);
     }
 
     public void TakeDamage(float damage)
     {
         if(isInvulnerable) { return; }
         _currentHealth -= damage;
-
-        healthBar.SetHealth((int)_currentHealth);
 
         if (_currentHealth <= 0)
         {
