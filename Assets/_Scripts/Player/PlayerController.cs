@@ -17,7 +17,6 @@ public class PlayerController : MonoBehaviour
     private bool canDash = true;
 
     private Vector2 moveDirection;
-    private Vector2 mousePosition;
 
     void Start()
     {
@@ -35,7 +34,6 @@ public class PlayerController : MonoBehaviour
 
         // Normalized prevents going faster while moving diagonally
         moveDirection = new Vector2(moveX, moveY).normalized;
-        mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
         // Check for dash input
         if (Input.GetKeyDown(KeyCode.Space) && canDash)
@@ -51,10 +49,6 @@ public class PlayerController : MonoBehaviour
         // Apply movement
         rb.velocity = new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
 
-        // Rotate player to face the mouse
-        Vector2 aimDirection = mousePosition - rb.position;
-        float aimAngle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg - 90f;
-        rb.rotation = aimAngle;
     }
 
     private IEnumerator Dash()

@@ -4,29 +4,25 @@ public class PlayerAimController : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] GameObject weaponObject;
+    [SerializeField] GameObject handObject;  // Add hand reference
     [SerializeField] Transform centerPoint;
 
-    [Header("Weapon Settings")]
-    [SerializeField] float weaponDistance = 1f;
-    [SerializeField] float rotationSpeed = 5f;
+    [Header("Weapon Attachment")]
+    [SerializeField] Transform leftSideAttachPoint;
+    [SerializeField] Transform rightSideAttachPoint;
 
     private Vector2 mousePosition;
-    private Vector2 weaponPosition;
+    private bool isAimingRight;
+    private Transform currentAttachPoint;
 
     private void Start()
     {
-        // Check for weapon object
         if (weaponObject == null)
         {
             weaponObject = gameObject;
         }
 
-        // Set center point if not assigned
-        if (centerPoint == null && transform.parent != null)
-        {
-            centerPoint = transform.parent;
-        }
-
+        currentAttachPoint = rightSideAttachPoint;
     }
 
     private void FixedUpdate()
@@ -38,32 +34,43 @@ public class PlayerAimController : MonoBehaviour
 
         // Calculate aim direction and angle
         Vector2 aimDirection = mousePosition - (Vector2)centerPoint.position;
-        float aimAngle = Mathf.Atan2(aimDirection.y, aimDirection.x);
+        float aimAngle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
 
-        // Calculate weapon position around the center point
-        float xOffset = Mathf.Cos(aimAngle) * weaponDistance;
-        float yOffset = Mathf.Sin(aimAngle) * weaponDistance;
-        weaponPosition = (Vector2)centerPoint.position + new Vector2(xOffset, yOffset);
+        // slight change from original 90 degrees, 
+        // this allows for more accuracy when aiming below the player
+        bool newAimingRight = aimAngle > -105 && aimAngle < 105; 
 
-        // Smoothly move weapon to its orbit position
-        weaponObject.transform.position = Vector2.Lerp(
-            weaponObject.transform.position,
-            weaponPosition,
-            rotationSpeed * Time.deltaTime
-        );
+        if (newAimingRight != isAimingRight)
+        {
+            isAimingRight = newAimingRight;
+            currentAttachPoint = isAimingRight ? leftSideAttachPoint : rightSideAttachPoint;
+
+            // Flip weapon and hand by adjusting scale
+            Vector3 newScale = new Vector3(isAimingRight ? 1 : -1, 1, 1);
+
+            if (weaponObject != null)
+            {
+                weaponObject.transform.localScale = newScale; // Fix side flipping
+                weaponObject.transform.position = currentAttachPoint.position;
+            }
+
+            if (handObject != null)
+            {
+                handObject.transform.localScale = newScale; // Fix hand flipping
+                handObject.transform.position = currentAttachPoint.position;
+            }
+        }
+
+        // Update weapon and hand positions
+        weaponObject.transform.position = currentAttachPoint.position;
+        if (handObject != null)
+        {
+            handObject.transform.position = currentAttachPoint.position;
+        }
 
         // Set rotation to face mouse
-        float rotationAngle = aimAngle * Mathf.Rad2Deg;
+        float rotationAngle = isAimingRight ? aimAngle : aimAngle + 180;
         weaponObject.transform.rotation = Quaternion.Euler(0, 0, rotationAngle);
     }
-    
-    // Helper method to visualize in the editor
-    private void OnDrawGizmosSelected()
-    {
-        if (centerPoint != null)
-        {
-            Gizmos.color = Color.yellow;
-            Gizmos.DrawWireSphere(centerPoint.position, weaponDistance);
-        }
-    }
+
 }

@@ -1,9 +1,12 @@
+using System;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
     [Header("Player Stats")]
-    [SerializeField] float maxHealth = 100f;
+    [SerializeField] float _maxHealth = 6f;
+
+    public event Action<float, float> OnHealthChanged; // current, max
 
     public bool isInvulnerable { get; private set; } = false;
 
@@ -11,7 +14,7 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        _currentHealth = maxHealth;
+        _currentHealth = _maxHealth;
     }
 
     public void TakeDamage(float damage)
@@ -33,6 +36,11 @@ public class Player : MonoBehaviour
     public float GetHealth()
     {
         return _currentHealth;
+    }
+
+    public float GetMaxHealth()
+    {
+        return _maxHealth;
     }
 
     public void SetInvulnerable(bool invulnerable)

@@ -144,8 +144,8 @@ ScriptedImporter:
   spriteSheetImportData:
   - name: full_heart
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
+    pivot: {x: 0.527085, y: 0.5}
+    alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -164,8 +164,8 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: half_heart
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
+    pivot: {x: 0.52636695, y: 0.49780273}
+    alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -184,8 +184,8 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: empty_heart
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
+    pivot: {x: 0.53482366, y: 0.5}
+    alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -344,8 +344,8 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: bulet_hit
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
+    pivot: {x: 0.46838737, y: 0.5266211}
+    alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -364,15 +364,15 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: crosshair
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
+    pivot: {x: 0.53068066, y: 0.5330403}
+    alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 20
-      y: 34
-      width: 16
-      height: 16
+      x: 24
+      y: 38
+      width: 9
+      height: 9
     spriteID: de936cd2a7cdda0498ee50a84266f2ad
     spriteBone: []
     spriteOutline: []
@@ -464,15 +464,15 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: enemy_bullet
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
+    pivot: {x: 0.3441882, y: 0.6596123}
+    alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 36
-      y: 18
-      width: 16
-      height: 16
+      y: 23
+      width: 11
+      height: 11
     spriteID: 4e67137b2e9878d41b35b19179779d17
     spriteBone: []
     spriteOutline: []
@@ -484,15 +484,15 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: player_bullet
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
+    pivot: {x: 0.15439916, y: 0.8456005}
+    alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 52
-      y: 14
-      width: 16
-      height: 16
+      y: 25
+      width: 5
+      height: 5
     spriteID: dc205190dad468c4689fd16d7f64e690
     spriteBone: []
     spriteOutline: []
