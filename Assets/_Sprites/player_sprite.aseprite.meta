@@ -97,7 +97,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638773296755635701
+  platformSettingsDirtyTick: 638773821305318064
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -142,7 +142,7 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
   spriteSheetImportData:
-  - name: player_sprite_1
+  - name: player
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -162,7 +162,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: player_sprite_2
+  - name: hand
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0

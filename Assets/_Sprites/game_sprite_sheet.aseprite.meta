@@ -32,7 +32,7 @@ ScriptedImporter:
     sRGBTexture: 1
     spriteMode: 2
     spriteExtrude: 1
-    spriteMeshType: 1
+    spriteMeshType: 0
     alignment: 0
     spritePivot: {x: 0.5, y: 0.5}
     spritePixelsToUnits: 16
@@ -97,7 +97,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638773305925693629
+  platformSettingsDirtyTick: 638773823956525892
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -142,7 +142,7 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
   spriteSheetImportData:
-  - name: game_sprite_sheet_10
+  - name: full_heart
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -162,7 +162,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: game_sprite_sheet_11
+  - name: half_heart
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -182,7 +182,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: game_sprite_sheet_12
+  - name: empty_heart
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -202,7 +202,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: game_sprite_sheet_13
+  - name: play1
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -222,7 +222,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: game_sprite_sheet_16
+  - name: options1
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -242,7 +242,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: game_sprite_sheet_19
+  - name: quit1
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -262,7 +262,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: game_sprite_sheet_23
+  - name: stamina_bar
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -282,7 +282,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: game_sprite_sheet_26
+  - name: play3
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -302,7 +302,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: game_sprite_sheet_29
+  - name: options3
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -322,7 +322,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: game_sprite_sheet_32
+  - name: quit3
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -342,7 +342,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: game_sprite_sheet_36
+  - name: bulet_hit
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -362,7 +362,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: game_sprite_sheet_37
+  - name: crosshair
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -382,7 +382,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: game_sprite_sheet_39
+  - name: play2
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -402,7 +402,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: game_sprite_sheet_42
+  - name: options2
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -422,7 +422,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: game_sprite_sheet_45
+  - name: quit2
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -442,7 +442,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: game_sprite_sheet_49
+  - name: enemy_spawn_point
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -462,7 +462,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: game_sprite_sheet_51
+  - name: enemy_bullet
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -482,7 +482,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: game_sprite_sheet_52
+  - name: player_bullet
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
