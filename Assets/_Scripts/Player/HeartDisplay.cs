@@ -1,83 +1,83 @@
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class HeartDisplay : MonoBehaviour
 {
-    [Header("Heart Sprites")]
-    [SerializeField] private Sprite fullHeartSprite;
-    [SerializeField] private Sprite halfHeartSprite;
-    [SerializeField] private Sprite emptyHeartSprite;
-    
-    [Header("Heart Containers")]
-    [SerializeField] private Image[] heartImages;
-    
-    [Header("Settings")]
-    [SerializeField] private int healthPerHeart = 2; // 2 health points = 1 heart
-    
-    private void Start()
+    [SerializeField] GameObject heartPrefab;
+    [SerializeField] Player player;
+
+    List<HeartController> hearts = new List<HeartController>();
+
+    void Start()
     {
-        // Subscribe to player health changes
-        Player player = FindObjectOfType<Player>();
-        if (player != null)
-        {
-            player.OnHealthChanged += UpdateHearts;
-            // Initial update to set starting hearts
-            UpdateHearts(player.GetHealth(), player.GetMaxHealth());
-        }
+        InitializeHearts();
     }
-    
-    public void UpdateHearts(float currentHealth, float maxHealth)
+
+    void Update()
     {
-        // Calculate how many hearts to show (rounded up for max)
-        int maxHearts = Mathf.CeilToInt(maxHealth / healthPerHeart);
-        
-        // Make sure we have enough heart images
-        if (heartImages.Length < maxHearts)
+        // Update heart visuals based on current health
+        UpdateHeartVisuals();
+    }
+
+    public void InitializeHearts()
+    {
+        ClearHearts();
+
+        // Calculate how many hearts to create (1 heart = 2 health points)
+        int heartsToMake = Mathf.CeilToInt(player.GetMaxHealth() / 2f);
+
+        // Create the appropriate number of hearts
+        for (int i = 0; i < heartsToMake; i++)
         {
-            Debug.LogWarning("Not enough heart images for max health!");
-            maxHearts = heartImages.Length;
+            CreateHeart();
         }
-        
-        // Update each heart image
-        for (int i = 0; i < heartImages.Length; i++)
+
+        // Update visuals to show current health
+        UpdateHeartVisuals();
+    }
+
+    private void CreateHeart()
+    {
+        GameObject newHeart = Instantiate(heartPrefab);
+        newHeart.transform.SetParent(transform);
+
+        HeartController heartComponent = newHeart.GetComponent<HeartController>();
+        hearts.Add(heartComponent);
+    }
+
+    public void UpdateHeartVisuals()
+    {
+        float currentHealth = player.GetHealth();
+
+        for (int i = 0; i < hearts.Count; i++)
         {
-            // Hide excess hearts
-            if (i >= maxHearts)
+            // Calculate which health points this heart represents
+            int heartStartHealth = i * 2;
+
+            if (currentHealth >= heartStartHealth + 2)
             {
-                heartImages[i].enabled = false;
-                continue;
+                // Full heart
+                hearts[i].SetHeartImage(HeartStatus.Full);
             }
-            
-            // Make sure heart is visible
-            heartImages[i].enabled = true;
-            
-            // Calculate health for this heart
-            float heartHealthStart = i * healthPerHeart;
-            float remainingHealth = currentHealth - heartHealthStart;
-            
-            // Set appropriate sprite
-            if (remainingHealth >= healthPerHeart)
+            else if (currentHealth > heartStartHealth)
             {
-                heartImages[i].sprite = fullHeartSprite;
-            }
-            else if (remainingHealth > 0)
-            {
-                heartImages[i].sprite = halfHeartSprite;
+                // Half heart
+                hearts[i].SetHeartImage(HeartStatus.Half);
             }
             else
             {
-                heartImages[i].sprite = emptyHeartSprite;
+                // Empty heart
+                hearts[i].SetHeartImage(HeartStatus.Empty);
             }
         }
     }
-    
-    private void OnDestroy()
+
+    public void ClearHearts()
     {
-        // Unsubscribe to prevent errors
-        Player player = FindObjectOfType<Player>();
-        if (player != null)
+        foreach (Transform t in transform)
         {
-            player.OnHealthChanged -= UpdateHearts;
+            Destroy(t.gameObject);
         }
+        hearts = new List<HeartController>();
     }
 }

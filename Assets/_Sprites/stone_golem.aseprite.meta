@@ -188,6 +188,15 @@ ScriptedImporter:
         width: 56
         height: 89
       spriteId: 746dd08beb902094896217e400630c05
+    - name: stone_golem_Frame_2
+      frameIndex: 2
+      additiveSortOrder: 0
+      cellRect:
+        x: 24
+        y: 4
+        width: 55
+        height: 40
+      spriteId: 52cff3e74851c1d4294157d388066562
     linkedCells: []
     parentIndex: -1
   platformSettings:

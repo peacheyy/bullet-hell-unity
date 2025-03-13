@@ -6,8 +6,6 @@ public class Player : MonoBehaviour
     [Header("Player Stats")]
     [SerializeField] float _maxHealth = 6f;
 
-    public event Action<float, float> OnHealthChanged; // current, max
-
     public bool isInvulnerable { get; private set; } = false;
 
     private float _currentHealth;

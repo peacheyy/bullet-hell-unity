@@ -163,6 +163,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletLifetime: 10
   bulletSpeed: 4
-  bulletDamage: 10
+  bulletDamage: 1
   waveAmplitude: 1
   waveFrequency: 5
