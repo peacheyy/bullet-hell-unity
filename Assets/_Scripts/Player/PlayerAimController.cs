@@ -38,7 +38,7 @@ public class PlayerAimController : MonoBehaviour
 
         // slight change from original 90 degrees, 
         // this allows for more accuracy when aiming below the player
-        bool newAimingRight = aimAngle > -105 && aimAngle < 105; 
+        bool newAimingRight = aimAngle > -103 && aimAngle < 103; 
 
         if (newAimingRight != isAimingRight)
         {

@@ -102,7 +102,7 @@ MonoBehaviour:
   bulletLifetime: 10
   bulletSpeed: 5
   bulletDamage: 10
-  knockbackMultiplier: 2
+  knockbackMultiplier: 1.1
 --- !u!61 &3720908506956383145
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -135,18 +135,18 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.34365654, y: 0.34393778}
+  m_Offset: {x: 0.10805541, y: -0.10906847}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    pivot: {x: 0.15439916, y: 0.8456005}
+    oldSize: {x: 0.3125, y: 0.3125}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.31831288, y: 0.31662518}
+  m_Size: {x: 0.3209015, y: 0.3269796}
   m_EdgeRadius: 0
 --- !u!50 &4145703467944971712
 Rigidbody2D:

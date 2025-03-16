@@ -6,12 +6,12 @@ public class EnemyAimController : MonoBehaviour
     [SerializeField] GameObject weaponObject;
     [SerializeField] GameObject handObject;  // Add hand reference
     [SerializeField] Transform centerPoint;
-    [SerializeField] GameObject playerObject;
 
     [Header("Weapon Attachment")]
     [SerializeField] Transform leftSideAttachPoint;
     [SerializeField] Transform rightSideAttachPoint;
 
+    private Transform playerTransform;
     private Vector2 playerPosition;
     private bool isAimingRight;
     private Transform currentAttachPoint;
@@ -23,7 +23,24 @@ public class EnemyAimController : MonoBehaviour
             weaponObject = gameObject;
         }
 
+        if (playerTransform == null)
+        {
+            playerTransform = GameObject.FindGameObjectWithTag("Player")?.transform;
+        }
+
         currentAttachPoint = rightSideAttachPoint;
+
+        isAimingRight = !IsPlayerToRight();
+    }
+
+    private bool IsPlayerToRight()
+    {
+        if (centerPoint == null || playerTransform == null)
+            return true; // Default
+
+        Vector2 aimDirection = playerTransform.position - centerPoint.position;
+        float aimAngle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
+        return aimAngle > -105 && aimAngle < 105;
     }
 
     private void FixedUpdate()
@@ -31,7 +48,7 @@ public class EnemyAimController : MonoBehaviour
         if (centerPoint == null) return;
 
         // Get mouse position in world space
-        playerPosition = playerObject.transform.position;
+        playerPosition = playerTransform.position;
 
         // Calculate aim direction and angle
         Vector2 aimDirection = playerPosition - (Vector2)centerPoint.position;
@@ -39,7 +56,7 @@ public class EnemyAimController : MonoBehaviour
 
         // slight change from original 90 degrees, 
         // this allows for more accuracy when aiming below the player
-        bool newAimingRight = aimAngle > -105 && aimAngle < 105; 
+        bool newAimingRight = aimAngle > -103 && aimAngle < 103; 
 
         if (newAimingRight != isAimingRight)
         {

@@ -19,19 +19,16 @@ public class PlayerBullet : Bullet
         if (collision.gameObject.CompareTag("Enemy"))
         {
             Enemy enemy = collision.gameObject.GetComponent<Enemy>();
-            Rigidbody2D enemyRb = collision.gameObject.GetComponent<Rigidbody2D>();
 
             if (enemy != null)
             {
                 enemy.TakeDamage(DamageAmount);
 
-                if (enemyRb != null)
-                {
-                    float knockbackForce = Speed * knockbackMultiplier;
-                    enemyRb.AddForce(transform.up * knockbackForce, ForceMode2D.Impulse);
-                }
+                // Apply knockback using our custom method
+                float knockbackForce = Speed * knockbackMultiplier;
+                enemy.ApplyKnockback(transform.up, knockbackForce);
 
-                ReturnToPool(); 
+                ReturnToPool();
             }
         }
     }
