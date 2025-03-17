@@ -25,6 +25,9 @@ public class SpawnEnemies : MonoBehaviour
     [SerializeField] int maxEnemies = 10;                      // Total number of enemies to spawn
     [SerializeField] float spawnInterval = 1f;                 // Time between spawns
     [SerializeField] float minDistanceFromPlayer = 5f;         // Minimum spawn distance from player
+    [SerializeField] float indicatorDuration = 1f;             // How long to show indicator before spawning enemy
+
+    [SerializeField] GameObject spawnPointIndicator;
 
     private Transform playerTransform;
     private int currentEnemyCount = 0;
@@ -127,18 +130,37 @@ public class SpawnEnemies : MonoBehaviour
         {
             if (currentEnemyCount < maxEnemies)
             {
-                SpawnEnemy();
+                Vector3 spawnPosition = GetRandomSpawnPosition();
+                StartCoroutine(SpawnSequence(spawnPosition));
                 currentEnemyCount++;
             }
             yield return new WaitForSeconds(spawnInterval);
         }
     }
 
-    // Spawns a single enemy at a random position within the spawn area.
-    private void SpawnEnemy()
+    // Handle the complete spawn sequence: show indicator, then spawn enemy
+    private IEnumerator SpawnSequence(Vector3 spawnPosition)
+    {
+        // Create spawn indicator
+        GameObject indicator = Instantiate(spawnPointIndicator, spawnPosition, Quaternion.identity);
+
+        // Wait for the indicator duration
+        yield return new WaitForSeconds(indicatorDuration);
+
+        // Destroy the indicator
+        if (indicator != null)
+        {
+            Destroy(indicator);
+        }
+
+        // Spawn the actual enemy
+        SpawnEnemy(spawnPosition);
+    }
+
+    // Spawns a single enemy at the given position
+    private void SpawnEnemy(Vector3 spawnPosition)
     {
         Enemy enemyPrefab = GetRandomEnemy();
-        Vector3 spawnPosition = GetRandomSpawnPosition();
         Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
     }
 
@@ -159,7 +181,7 @@ public class SpawnEnemies : MonoBehaviour
         Gizmos.DrawCube(Vector3.zero, new Vector3(areaSize.x, areaSize.y, 0.1f));
 
         // Draw minimum spawn distance from player if available
-        if (playerTransform != null)
+        if (Application.isPlaying && playerTransform != null)
         {
             Gizmos.color = Color.yellow;
             Gizmos.DrawWireSphere(playerTransform.position, minDistanceFromPlayer);
