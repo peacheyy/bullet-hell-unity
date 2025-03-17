@@ -10,8 +10,19 @@ public class BulletPoolManager : MonoBehaviour
         {
             if (_instance == null)
             {
-                _instance = FindObjectOfType<BulletPoolManager>();
-                if (_instance == null)
+                //FindObjectsOfType is depreciated, in order to comply with unity 6 I had to change it to FindObjectsByType
+                //The key difference here is that instead of setting instance to the type BulletPoolManager
+                //I have to set it to an array because FindObjectsByType<BulletPoolManager> returns an array
+                BulletPoolManager[] managers = FindObjectsByType<BulletPoolManager>(FindObjectsSortMode.None);
+                if (managers.Length > 0)
+                {
+                    _instance = managers[0];
+                    if (managers.Length > 1)
+                    {
+                        Debug.LogWarning("Multiple BulletPoolManager instances found in scene. Using the first one.");
+                    }
+                }
+                else
                 {
                     Debug.LogError("No BulletPoolManager found in scene!");
                 }
@@ -51,11 +62,11 @@ public class BulletPoolManager : MonoBehaviour
     private void InitializePools()
     {
         pools = new Dictionary<string, ObjectPool<Bullet>>();
-        
+
         foreach (var bulletPool in bulletPools)
         {
             pools[bulletPool.key] = new ObjectPool<Bullet>(
-                bulletPool.bulletPrefab, 
+                bulletPool.bulletPrefab,
                 bulletPool.initialPoolSize,
                 bulletPool.key,  // Pass the key to the pool
                 transform

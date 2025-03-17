@@ -55,7 +55,7 @@ public class Bullet : MonoBehaviour
     // Set velocity based on the bullet's up direction
     protected virtual void InitMovement()
     {
-        rb.velocity = transform.up * Speed;
+        rb.linearVelocity = transform.up * Speed;
     }
 
     // Checks whether the fired bullet's life exceeds the timer

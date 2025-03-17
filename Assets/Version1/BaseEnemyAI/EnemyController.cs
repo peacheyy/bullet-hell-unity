@@ -46,11 +46,11 @@ public class EnemyController : MonoBehaviour
             {
                 moveDirection = direction;
                 Vector2 targetVelocity = moveDirection * moveSpeed;
-                rb.velocity = Vector2.Lerp(rb.velocity, targetVelocity, Time.fixedDeltaTime * 5f);
+                rb.linearVelocity = Vector2.Lerp(rb.linearVelocity, targetVelocity, Time.fixedDeltaTime * 5f);
             }
             else
             {
-                rb.velocity = Vector2.zero;
+                rb.linearVelocity = Vector2.zero;
             }
         }
     }

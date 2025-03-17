@@ -47,7 +47,7 @@ public class PlayerController : MonoBehaviour
         if (isDashing) { return; } // Skip movement and rotation while dashing
 
         // Apply movement
-        rb.velocity = new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
+        rb.linearVelocity = new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
 
     }
 
@@ -63,14 +63,14 @@ public class PlayerController : MonoBehaviour
         }
 
         // Store the original velocity and set the dash velocity
-        Vector2 originalVelocity = rb.velocity;
-        rb.velocity = moveDirection * dashSpeed;
+        Vector2 originalVelocity = rb.linearVelocity;
+        rb.linearVelocity = moveDirection * dashSpeed;
 
         // Wait for the dash duration
         yield return new WaitForSeconds(dashDuration);
 
         // Reset velocity after dash
-        rb.velocity = originalVelocity;
+        rb.linearVelocity = originalVelocity;
 
         isDashing = false;
 

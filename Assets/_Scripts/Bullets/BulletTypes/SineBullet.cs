@@ -63,6 +63,6 @@ public class SineBullet : Bullet
     // Override this to prevent normal velocity setting
     protected override void InitMovement()
     {
-        rb.velocity = Vector2.zero;
+        rb.linearVelocity = Vector2.zero;
     }
 }

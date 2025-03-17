@@ -68,7 +68,7 @@ public class ObjectPool<T> where T : Component
     public void ReturnAll()
     {
         // Find all active instances and return them to pool
-        T[] activeInstances = GameObject.FindObjectsOfType<T>();
+        T[] activeInstances = GameObject.FindObjectsByType<T>(FindObjectsSortMode.None);
         foreach (T obj in activeInstances)
         {
             Return(obj);
